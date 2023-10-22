@@ -32,7 +32,7 @@ const AddProduct = () => {
           </h5>
           <div className='grid md:grid-cols-2 gap-10 px-16'>
             {/* product image  */}
-            <div>
+            <div className='col-span-2 md:col-span-1'>
               <label
                 htmlFor='image'
                 className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
@@ -50,7 +50,7 @@ const AddProduct = () => {
             </div>
 
             {/* product name  */}
-            <div>
+            <div className='col-span-2 md:col-span-1'>
               <label
                 htmlFor='name'
                 className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
@@ -67,7 +67,7 @@ const AddProduct = () => {
               />
             </div>
             {/* Brand name  */}
-            <div>
+            <div className='col-span-2 md:col-span-1'>
               <label
                 htmlFor='brandName'
                 className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
@@ -84,7 +84,7 @@ const AddProduct = () => {
               />
             </div>
             {/* Product Price  */}
-            <div>
+            <div className='col-span-2 md:col-span-1'>
               <label
                 htmlFor='price'
                 className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
@@ -102,7 +102,7 @@ const AddProduct = () => {
             </div>
 
             {/* Product Rating  */}
-            <div>
+            <div className='col-span-2 md:col-span-1'>
               <label
                 htmlFor='rating'
                 className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
@@ -119,7 +119,7 @@ const AddProduct = () => {
               />
             </div>
             {/* Product Category  */}
-            <div>
+            <div className='col-span-2 md:col-span-1'>
               <label
                 htmlFor='category'
                 className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
