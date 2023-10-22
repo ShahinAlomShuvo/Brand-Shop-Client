@@ -5,7 +5,7 @@ import { FaGithub, FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 
-const Login = () => {
+const Registration = () => {
   const sectionStyle = {
     backgroundImage: `url(${banner1})`,
     backgroundSize: "cover",
@@ -18,18 +18,33 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const { signInUser, githubLogin, googleLogIn } = useContext(AuthContext);
+  const { createUSer, googleLogIn, githubLogin, updateUserProfile } =
+    useContext(AuthContext);
 
-  const loginHandler = (e) => {
+  const registrationHandler = (e) => {
     e.preventDefault();
 
     const form = new FormData(e.target);
+    const name = form.get("name");
+    const photoUrl = form.get("photoUrl");
     const email = form.get("email");
     const password = form.get("password");
-    signInUser(email, password)
+
+    if (password.length < 6) {
+      return toast.error("Password must be 6 Character");
+    }
+
+    if (!/^(?=.*[A-Z])(?=.*[^A-Za-z0-9])/.test(password)) {
+      return toast.error("Password must have 1 Capital & 1 special Character");
+    }
+
+    // registration with email & password
+
+    createUSer(email, password)
       .then((res) => {
-        toast.success("Log in Successful");
-        console.log(res);
+        updateUserProfile(name, photoUrl);
+        toast.success("Registration Successful");
+        console.log(res.user);
       })
       .catch((error) => {
         console.log(error);
@@ -51,7 +66,7 @@ const Login = () => {
   };
 
   // registration with google
-  const gitHubLoginHandler = () => {
+  const githubLoginHandler = () => {
     githubLogin()
       .then((res) => {
         toast.success("Registration Successful");
@@ -74,13 +89,13 @@ const Login = () => {
                   <div className='rounded-t mb-0 px-6 py-6'>
                     <div className='text-center mb-3'>
                       <h6 className='text-gray-400 text-lg font-bold'>
-                        Sign in with
+                        Sign up with
                       </h6>
                     </div>
                     <div className='btn-wrapper text-center'>
                       <button
-                        onClick={gitHubLoginHandler}
-                        className='bg-white active:bg-gray-100 text-gray-800  px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs'
+                        onClick={githubLoginHandler}
+                        className='bg-white active-bg-gray-100 text-gray-800 px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs'
                         type='button'
                         style={{ transition: "all .15s ease" }}
                       >
@@ -88,7 +103,7 @@ const Login = () => {
                       </button>
                       <button
                         onClick={googleLogInHandler}
-                        className='bg-white active:bg-gray-100 text-gray-800  px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs'
+                        className='bg-white active-bg-gray-100 text-gray-800 px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs'
                         type='button'
                         style={{ transition: "all .15s ease" }}
                       >
@@ -99,13 +114,45 @@ const Login = () => {
                   </div>
                   <div className='flex-auto px-4 lg:px-10 py-10 pt-0'>
                     <div className='text-gray-300 text-lg text-center mb-3 font-bold'>
-                      <small>Or sign in with credentials</small>
+                      <small>Or sign up with credentials</small>
                     </div>
-                    <form onSubmit={loginHandler}>
+                    <form onSubmit={registrationHandler}>
                       <div className='relative w-full mb-3'>
                         <label
                           className='block uppercase text-gray-700 text-xs font-bold mb-2'
-                          htmlFor='grid-password'
+                          htmlFor='name'
+                        >
+                          Name
+                        </label>
+                        <input
+                          required
+                          name='name'
+                          type='text'
+                          className='border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full'
+                          placeholder='Name'
+                          style={{ transition: "all .15s ease" }}
+                        />
+                      </div>
+                      <div className='relative w-full mb-3'>
+                        <label
+                          className='block uppercase text-gray-700 text-xs font-bold mb-2'
+                          htmlFor='photoUrl'
+                        >
+                          Photo URL
+                        </label>
+                        <input
+                          required
+                          name='photoUrl'
+                          type='text'
+                          className='border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full'
+                          placeholder='Photo URL'
+                          style={{ transition: "all .15s ease" }}
+                        />
+                      </div>
+                      <div className='relative w-full mb-3'>
+                        <label
+                          className='block uppercase text-gray-700 text-xs font-bold mb-2'
+                          htmlFor='email'
                         >
                           Email
                         </label>
@@ -122,7 +169,7 @@ const Login = () => {
                       <div className='relative w-full mb-3'>
                         <label
                           className='block uppercase text-gray-700 text-xs font-bold mb-2'
-                          htmlFor='grid-password'
+                          htmlFor='password'
                         >
                           Password
                         </label>
@@ -165,25 +212,16 @@ const Login = () => {
                           type='submit'
                           style={{ transition: "all .15s ease" }}
                         >
-                          Sign In
+                          Sign Up
                         </button>
                       </div>
                     </form>
                   </div>
                 </div>
                 <div className='flex flex-wrap mt-6 px-12'>
-                  <div className='w-1/2'>
-                    <a
-                      href='#'
-                      onClick={(e) => e.preventDefault()}
-                      className='text-gray-300'
-                    >
-                      <small>Forgot password?</small>
-                    </a>
-                  </div>
-                  <div className='w-1/2 text-right'>
-                    <Link to={"/registration"} className='text-gray-300'>
-                      <small>Create a new account?</small>
+                  <div className='w-full '>
+                    <Link to={"/login"} className='text-gray-300'>
+                      <small>Already have an account? Sign In</small>
                     </Link>
                   </div>
                 </div>
@@ -196,4 +234,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Registration;
