@@ -23,8 +23,8 @@ const BrandProduct = () => {
     <div>
       {productData ? (
         <div className='grid md:grid-cols-3 gap-10 container mx-auto  py-10'>
-          {productData.map((product) => (
-            <ProductCard key={product._id} product={product}></ProductCard>
+          {productData.map((product, idx) => (
+            <ProductCard key={idx} product={product}></ProductCard>
           ))}
         </div>
       ) : (

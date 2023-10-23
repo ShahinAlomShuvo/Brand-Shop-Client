@@ -1,5 +1,6 @@
 const ProductCard = ({ product }) => {
   const {
+    _id,
     brand_name,
     category,
     image_url,
@@ -7,6 +8,7 @@ const ProductCard = ({ product }) => {
     product_price,
     product_rating,
   } = product;
+
   return (
     <div>
       <div className='card  bg-base-100 shadow-xl'>
@@ -22,8 +24,8 @@ const ProductCard = ({ product }) => {
           <p className=' font-semibold'>Price : ${product_price}</p>
           <p className=' font-semibold'>Rating : {product_rating}</p>
           <div className='card-actions justify-end'>
-            <button className='btn btn-outline'>Details</button>
-            <button className='btn btn-outline'>Update</button>
+            <button className='btn btn-success'>Details</button>
+            <button className='btn btn-success btn-outline'>Update</button>
           </div>
         </div>
       </div>
