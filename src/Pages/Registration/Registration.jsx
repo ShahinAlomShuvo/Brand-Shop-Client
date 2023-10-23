@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import banner1 from "../../assets/Images/slider1.jpg";
 import { FaGithub, FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -13,6 +13,8 @@ const Registration = () => {
   };
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -42,6 +44,7 @@ const Registration = () => {
 
     createUSer(email, password)
       .then((res) => {
+        navigate("/");
         updateUserProfile(name, photoUrl);
         toast.success("Registration Successful");
         console.log(res.user);
@@ -56,6 +59,7 @@ const Registration = () => {
   const googleLogInHandler = () => {
     googleLogIn()
       .then((res) => {
+        navigate("/");
         toast.success("Registration Successful");
         console.log(res.user);
       })
@@ -69,6 +73,7 @@ const Registration = () => {
   const githubLoginHandler = () => {
     githubLogin()
       .then((res) => {
+        navigate("/");
         toast.success("Registration Successful");
         console.log(res.user);
       })

@@ -1,27 +1,43 @@
+import toast from "react-hot-toast";
+
 const AddProduct = () => {
   const handleAddProduct = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
 
-    const image = form.get("image");
-    const name = form.get("name");
-    const brandName = form.get("brandName");
-    const price = form.get("price");
-    const rating = form.get("rating");
+    const image_url = form.get("image");
+    const product_name = form.get("name");
+    const brand_name = form.get("brandName");
+    const product_price = form.get("price");
+    const product_rating = form.get("rating");
     const category = form.get("category");
-    const description = form.get("description");
+    const short_description = form.get("description");
 
     const newProduct = {
-      image,
-      name,
-      brandName,
-      price,
-      rating,
+      image_url,
+      product_name,
+      brand_name,
+      product_price,
+      product_rating,
       category,
-      description,
+      short_description,
     };
     e.target.reset();
-    console.log(newProduct);
+
+    fetch("http://localhost:5000/products", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast.success("Product Added Successfully");
+        }
+      });
   };
   return (
     <div className='pt-10'>
@@ -137,6 +153,7 @@ const AddProduct = () => {
                 <option value='shoe'>Shoe</option>
                 <option value='watch'>Watch</option>
                 <option value='cloth'>Cloth</option>
+                <option value='cloth'>Bags</option>
               </select>
             </div>
             {/* Short Description */}
