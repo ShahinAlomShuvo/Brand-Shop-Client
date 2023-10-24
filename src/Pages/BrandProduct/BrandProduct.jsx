@@ -21,15 +21,17 @@ const BrandProduct = () => {
 
   return (
     <div>
-      {productData ? (
-        <div className='grid md:grid-cols-3 gap-10 container mx-auto  py-10'>
-          {productData.map((product, idx) => (
-            <ProductCard key={idx} product={product}></ProductCard>
-          ))}
-        </div>
-      ) : (
-        <p>No products Available here</p>
-      )}
+      <div>
+        {productData?.length > 0 ? (
+          <div className='grid md:grid-cols-3 gap-10 container mx-auto  py-10'>
+            {productData.map((product, idx) => (
+              <ProductCard key={idx} product={product}></ProductCard>
+            ))}
+          </div>
+        ) : (
+          <p>No products Available here</p>
+        )}
+      </div>
     </div>
   );
 };

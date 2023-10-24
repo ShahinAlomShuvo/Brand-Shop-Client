@@ -16,7 +16,7 @@ const BrandCollection = ({ brands }) => {
       <div className='grid md:grid-cols-3 gap-5 pb-10'>
         {brands.map((brand) => (
           <BrandCard
-            key={brand.id}
+            key={brand._id}
             brand={brand}
             handleProducts={handleProducts}
           ></BrandCard>

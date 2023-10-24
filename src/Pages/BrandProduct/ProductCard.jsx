@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ProductCard = ({ product }) => {
   const {
     _id,
@@ -18,14 +20,19 @@ const ProductCard = ({ product }) => {
         <div className='card-body'>
           <h2 className='card-title'>
             {product_name}
-            <div className='badge badge-secondary'>Brand : {brand_name}</div>
+            <div className='badge badge-secondary'>{brand_name}</div>
           </h2>
           <p className=' font-semibold'>Type : {category}</p>
           <p className=' font-semibold'>Price : ${product_price}</p>
           <p className=' font-semibold'>Rating : {product_rating}</p>
           <div className='card-actions justify-end'>
             <button className='btn btn-success'>Details</button>
-            <button className='btn btn-success btn-outline'>Update</button>
+            <Link
+              to={`/updateProduct/${_id}`}
+              className='btn btn-success btn-outline'
+            >
+              Update
+            </Link>
           </div>
         </div>
       </div>
