@@ -29,7 +29,7 @@ const BrandProduct = () => {
             ))}
           </div>
         ) : (
-          <p>No products Available here</p>
+          <p className='text-center py-20'>No products Available here</p>
         )}
       </div>
     </div>

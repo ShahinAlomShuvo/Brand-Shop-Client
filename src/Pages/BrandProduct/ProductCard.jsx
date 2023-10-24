@@ -26,7 +26,9 @@ const ProductCard = ({ product }) => {
           <p className=' font-semibold'>Price : ${product_price}</p>
           <p className=' font-semibold'>Rating : {product_rating}</p>
           <div className='card-actions justify-end'>
-            <button className='btn btn-success'>Details</button>
+            <Link to={`/productDetails/${_id}`} className='btn btn-success'>
+              Details
+            </Link>
             <Link
               to={`/updateProduct/${_id}`}
               className='btn btn-success btn-outline'
