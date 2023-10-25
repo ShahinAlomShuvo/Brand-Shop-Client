@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/brands"),
+        loader: () => fetch("https://brand-shop-eta.vercel.app/brands"),
       },
       {
         path: "/addProduct",
@@ -45,6 +45,7 @@ const router = createBrowserRouter([
             <MyCarts></MyCarts>
           </PrivateRoute>
         ),
+        loader: () => fetch("https://brand-shop-eta.vercel.app/cart"),
       },
       {
         path: "/brandProduct/:brandName",
@@ -52,9 +53,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/updateProduct/:id",
-        element: <UpdateProduct></UpdateProduct>,
+        element: (
+          <PrivateRoute>
+            <UpdateProduct></UpdateProduct>,
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(`https://brand-shop-eta.vercel.app/products/${params.id}`),
       },
       {
         path: "/productDetails/:id",
@@ -64,7 +69,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(`https://brand-shop-eta.vercel.app/products/${params.id}`),
       },
     ],
   },

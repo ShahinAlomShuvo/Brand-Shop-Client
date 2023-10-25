@@ -39,7 +39,7 @@ const UpdateProduct = () => {
     };
     e.target.reset();
 
-    fetch(`http://localhost:5000/products/${_id}`, {
+    fetch(`https://brand-shop-eta.vercel.app/products/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

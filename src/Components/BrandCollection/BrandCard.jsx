@@ -9,7 +9,7 @@ const BrandCard = ({ brand, handleProducts }) => {
         onClick={handleBrandProducts}
         className='card bg-base-100 shadow-xl image-full'
       >
-        <figure className='h-64'>
+        <figure className='md:h-64 '>
           <img className='h-full w-full' src={image_url} />
         </figure>
         <div className='card-body'>

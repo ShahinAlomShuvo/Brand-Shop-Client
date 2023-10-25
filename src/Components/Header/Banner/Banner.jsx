@@ -25,7 +25,7 @@ const Banner = () => {
                   comfort and performance like no other. Elevate your every
                   step.
                 </p>
-                <button className='btn btn-primary'>Go to store</button>
+                <button className='btn btn-success'>Go to store</button>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@ const Banner = () => {
                   precision and designed for the sophisticated, each piece is a
                   work of art.
                 </p>
-                <button className='btn btn-primary'>Go to store</button>
+                <button className='btn btn-success'>Go to store</button>
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@ const Banner = () => {
                   Gucci clothing represents the pinnacle of high-end fashion.
                   Discover timeless elegance, sophistication, and unique style.
                 </p>
-                <button className='btn btn-primary'>Go to store</button>
+                <button className='btn btn-success'>Go to store</button>
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ const Banner = () => {
                   versatility and quality. Gear up for sports and life's
                   adventures.
                 </p>
-                <button className='btn btn-primary'>Go to store</button>
+                <button className='btn btn-success'>Go to store</button>
               </div>
             </div>
           </div>

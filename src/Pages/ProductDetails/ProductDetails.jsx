@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 
 const ProductDetails = () => {
@@ -12,6 +13,23 @@ const ProductDetails = () => {
     product_rating,
     short_description,
   } = product;
+
+  const addProductHandler = (product) => {
+    fetch("https://brand-shop-eta.vercel.app/cart", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          toast.success("Product Added Successfully");
+        }
+      });
+  };
   return (
     <div className='flex justify-center py-10'>
       <div className='w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
@@ -41,7 +59,10 @@ const ProductDetails = () => {
             <span className='text-3xl font-bold text-gray-900 dark:text-white'>
               ${product_price}
             </span>
-            <button className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800'>
+            <button
+              onClick={() => addProductHandler(product)}
+              className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800'
+            >
               Add to cart
             </button>
           </div>

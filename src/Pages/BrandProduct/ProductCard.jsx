@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
   return (
     <div>
       <div className='card  bg-base-100 shadow-xl'>
-        <figure className='h-96'>
+        <figure className='lg:h-96 md:h-60'>
           <img className='h-full w-full' src={image_url} />
         </figure>
         <div className='card-body'>
@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
           <p className=' font-semibold'>Type : {category}</p>
           <p className=' font-semibold'>Price : ${product_price}</p>
           <p className=' font-semibold'>Rating : {product_rating}</p>
-          <div className='card-actions justify-end'>
+          <div className='card-actions  lg:justify-end'>
             <Link to={`/productDetails/${_id}`} className='btn btn-success'>
               Details
             </Link>
